@@ -1,13 +1,13 @@
 package homework_2;
 
 public class main {
-    public static void main(String[] args) {
-        Human Alex = new Human(true, "Alex", "муж", 18);
-        System.out.println(Alex);
-        System.out.println(Alex.getChildren());
-        IO data = new IO();
-        data.save("test.data", Alex);
+    public static void master(String[] args) {
+        human Paul = new human(true, "Павел", "муж", 36);
+        System.out.println(Paul);
+        System.out.println(Paul.getChildren());
+        io data = new io();
+        data.save("homework_2/database.txt", Paul);
         System.out.print("Загрузка: ");
-        System.out.println(data.load("test.data"));
+        System.out.println(data.load("homework_2/database.txt"));
     }
 }
