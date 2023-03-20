@@ -1,9 +1,6 @@
 package src.ui;
 
 import java.util.Scanner;
-
-import src.model.FamilyTree;
-import src.model.Human;
 import src.presenter.Presenter;
 
 public class Console implements View {
@@ -31,8 +28,7 @@ public class Console implements View {
     }
 
     private void header() {
-        System.out.println("\n" +
-                " В данной программе доступны поиск, \n добавление и вывод семейного древа");
+        System.out.println("\nПрограмма для работы с семейным древом");
     }
 
     private void menuUi() {
@@ -40,12 +36,13 @@ public class Console implements View {
     }
 
     public void addHumanNew() {
-        presenter.addHumanNew();
-    }
-
-    public void end() {
-        go = false;
-        System.out.println("Спасибо что пользуетесь нашим сервисом :D");
+        System.out.print("Введите имя-> ");
+        String name = scan();
+        System.out.print("Введите пол(муж./жен.)-> ");
+        String sex = scan();
+        System.out.print("Введите возраст-> ");
+        int age = Integer.parseInt(scan());
+        presenter.addHumanNew(name, sex, age);
     }
 
     public void familyPrint() {
@@ -53,7 +50,29 @@ public class Console implements View {
     }
 
     public void humanSearch() {
-        presenter.humanSearch();
+        System.out.print("Введите имя человека для поиска-> ");
+        String name = scan();
+        presenter.humanSearch(name);
+    }
+
+    public void saveFamily() {
+        presenter.saveFamily();
+    }
+
+    public void loadFamily() {
+        presenter.loadFamily();
+    }
+
+    public void sortFamily() {
+        System.out.print("\n1. Сортировка по имени\n2. Сортировка по возрасту\n" +
+                "Ваш выбор -> ");
+        int choice = Integer.parseInt(scan());
+        presenter.sortFamily(choice);
+    }
+
+    public void end() {
+        go = false;
+        System.out.println("Спасибо, что пользуетесь нашим сервисом :D");
     }
 
     @Override
@@ -74,15 +93,5 @@ public class Console implements View {
     @Override
     public void print(String text) {
         System.out.println(text);
-    }
-
-    @Override
-    public void print(Human human) {
-        System.out.println(human);
-    }
-
-    @Override
-    public void print(FamilyTree<Human> FamilyTree) {
-        System.out.println(FamilyTree);
     }
 }

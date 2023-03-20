@@ -52,4 +52,8 @@ public class FamilyTree<T extends Animal> implements Iterable<T>, Serializable {
     public Iterator<T> iterator() {
         return new AnimalIterator<T>(familyTree);
     }
+
+    public void saveObj(IO save) {
+        save.save("FamilyTree.data", this);
+    }
 }
